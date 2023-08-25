@@ -23,3 +23,8 @@ variable "security_groups_map" {
       test = "test"
   }
 }
+
+variable "infrastructure_version" {
+    description = "Version of the infrastructure currently running"
+  default = "1"
+}
