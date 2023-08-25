@@ -1,7 +1,7 @@
-resource "aws_security_group" "sg-nginx-webserver" {
+resource "aws_security_group" "nginx-webserver" {
   for_each        = var.security_groups_map
   name            = each.value
-  description = "Web server security group."
+  description = "Webserver security group."
   ingress {
     description = "Allow port 80"
     from_port   = 80

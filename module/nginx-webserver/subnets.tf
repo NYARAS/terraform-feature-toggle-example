@@ -1,8 +1,3 @@
-locals {
-  subnet_count       = 3
-  availability_zones = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
-}
-
 resource "aws_subnet" "nginx-webserver" {
   count                   = local.subnet_count
   vpc_id                  = aws_vpc.nginx-webserver.id
