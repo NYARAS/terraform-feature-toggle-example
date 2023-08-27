@@ -28,3 +28,9 @@ variable "infrastructure_version" {
     description = "Version of the infrastructure currently running"
   default = "1"
 }
+
+variable "instance_type" {
+  description = "EC2 Instance Type"
+  type        = string
+  default     = "t2.micro"
+}
