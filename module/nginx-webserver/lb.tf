@@ -21,6 +21,7 @@ resource "aws_lb_target_group_attachment" "nginx-webserver" {
 
 
 resource "aws_lb" "nginx-webserver" {
+    count  = var.load_balancing_enabled ? 1 : 0
   name               = "nginx-webserver-v${var.infrastructure_version}"
   internal           = false
   load_balancer_type = "application"
@@ -34,13 +35,14 @@ resource "aws_lb" "nginx-webserver" {
 }
 
 resource "aws_lb_listener" "nginx-webserver" {
-  load_balancer_arn = aws_lb.nginx-webserver.arn
+    count = var.load_balancing_enabled ? 1 : 0
+  load_balancer_arn = aws_lb.nginx-webserver[0].arn
   port              = "80"
   protocol          = "HTTP"
 
 
   default_action {
-    target_group_arn = aws_lb_target_group.tg.arn
+    target_group_arn = aws_lb_target_group.nginx-webserver.arn
     type             = "forward"
   }
 
