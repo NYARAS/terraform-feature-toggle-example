@@ -1,6 +1,6 @@
 resource "aws_security_group" "nginx-webserver" {
-  for_each        = var.security_groups_map
-  name            = each.value
+  name            = var.security_group_name
+  vpc_id = aws_vpc.nginx-webserver.id
   description = "Webserver security group."
   ingress {
     description = "Allow port 80"
